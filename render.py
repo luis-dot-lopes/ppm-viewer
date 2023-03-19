@@ -1,9 +1,14 @@
 import pygame
+import sys
 
 width, height = 0, 0
 pixels = []
 
-with open("bar.ppm", "rb") as file:
+if sys.argc < 2:
+    print("Error: no file to display")
+    sys.exit(1)
+
+with open(sys.argv[1], "rb") as file:
     filetype, dimensions, pixels = file.readlines()
     width, height = map(int, dimensions.decode('utf-8')[:-1].split()[:-1])
     pixels = [int(pixel) for pixel in pixels]
